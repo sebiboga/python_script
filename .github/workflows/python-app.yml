@@ -1,0 +1,20 @@
+name: Run Python Script in Docker
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  run-python-in-docker:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Pasul 1: Checkout codul sursă din repository
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      # Pasul 2: Rulează scriptul Python folosind Docker
+      - name: Run Python script in Docker
+        run: |
+          docker run -it --rm -v "${{ github.workspace }}:/app" python:3.10-slim python /app/hello.py
