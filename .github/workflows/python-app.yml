@@ -20,9 +20,9 @@ jobs:
       # Pasul 2: Rulează scriptul Python folosind Docker
       - name: Run Python script in Docker
         run: |
-          docker run --rm -v "$(pwd)":/app python:3.10-slim bash -c "
+          docker run --rm -v "${{ github.workspace }}:/app" python:3.10-slim bash -c "
           python -m venv /app/venv && \
           /app/venv/bin/pip install --upgrade pip && \
           /app/venv/bin/pip install requests && \
-          /app/venv/bin/python /app/total.py
+          /app/venv/bin/python /app/${{ github.event.inputs.filename }}
           "
