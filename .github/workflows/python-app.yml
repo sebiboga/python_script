@@ -20,4 +20,4 @@ jobs:
       # Pasul 2: Rulează scriptul Python folosind Docker
       - name: Run Python script in Docker
         run: |
-          docker run --rm -v "$(pwd)":/app python:3.10-slim bash -c "pip install requests && python /app/${{ github.event.inputs.filename }}"
+          docker run --rm -v "$(pwd)":/app python:3.10-slim bash -c "pip install requests && python /app/total.py"
