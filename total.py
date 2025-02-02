@@ -1,22 +1,15 @@
 import requests
 
-# URL-ul endpoint-ului API
 url = "https://api.peviitor.ro/v3/total/"
+headers = {
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3"
+}
 
-# Facem cererea GET la API
-response = requests.get(url)
+response = requests.get(url, headers=headers)
 
-# Verificăm dacă cererea a avut succes
 if response.status_code == 200:
-    # Decodăm JSON-ul
     data = response.json()
-    
-    # Extragem numărul de job-uri și numărul de companii
-    num_jobs = data['total']['jobs']
-    num_companies = data['total']['companies']
-    
-    # Tipărim rezultatele
-    print(f'Numărul de job-uri: {num_jobs}')
-    print(f'Numărul de companii: {num_companies}')
+    print(f"Numărul de job-uri: {data['total']['jobs']}")
+    print(f"Numărul de companii: {data['total']['companies']}")
 else:
-    print(f'Eroare la cererea API: {response.status_code}')
+    print(f"Eroare la cererea API: {response.status_code}")
