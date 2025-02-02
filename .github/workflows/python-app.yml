@@ -1,9 +1,12 @@
 name: Run Python Script in Docker
 
 on:
-  push:
-    branches:
-      - main
+  workflow_dispatch:
+    inputs:
+      filename:
+        description: 'Numele fișierului Python de rulat'
+        required: true
+        default: 'hello.py'  # Poți seta un nume implicit
 
 jobs:
   run-python-in-docker:
@@ -17,4 +20,4 @@ jobs:
       # Pasul 2: Rulează scriptul Python folosind Docker
       - name: Run Python script in Docker
         run: |
-          docker run --rm -v "${{ github.workspace }}:/app" python:3.10-slim python /app/hello.py
+          docker run --rm -v "${{ github.workspace }}:/app" python:3.10-slim python /app/${{ github.event.inputs.filename }}
