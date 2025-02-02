@@ -17,4 +17,4 @@ jobs:
       # Pasul 2: Rulează scriptul Python folosind Docker
       - name: Run Python script in Docker
         run: |
-          docker run -it --rm -v "${{ github.workspace }}:/app" python:3.10-slim python /app/hello.py
+          docker run --rm -v "${{ github.workspace }}:/app" python:3.10-slim python /app/hello.py
