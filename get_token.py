@@ -34,11 +34,12 @@ if response.status_code == 200:
     response_data = response.json()
     print("Răspuns:", response_data)
     
-    # Extracția token-ului
-    if 'token' in response_data:
-        token = response_data['token']
-        print("Token-ul extras este:", token)
+    # Extracția access token-ului
+    access_token = response_data.get('access')
+    
+    if access_token:
+        print("Access Token:", access_token)
     else:
-        print("Token-ul nu a fost găsit în răspuns.")
+        print("Access Token-ul nu a fost găsit în răspuns.")
 else:
     print("A apărut o eroare:", response.status_code, response.text)
