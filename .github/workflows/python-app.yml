@@ -7,6 +7,9 @@ on:
         description: 'Numele fișierului Python de rulat'
         required: true
         default: 'hello.py'  # Poți seta un nume implicit
+      email:
+        description: 'Emailul pentru autentificare'
+        required: true  # Fără default, utilizatorul trebuie să introducă un email
 
 jobs:
   run-python-in-docker:
@@ -24,5 +27,5 @@ jobs:
           python -m venv /app/venv && \
           /app/venv/bin/pip install --upgrade pip && \
           /app/venv/bin/pip install requests && \
-          /app/venv/bin/python /app/${{ github.event.inputs.filename }}
+          /app/venv/bin/python /app/${{ github.event.inputs.filename }} '${{ github.event.inputs.email }}'
           "
